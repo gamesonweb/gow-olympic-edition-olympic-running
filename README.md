@@ -1,5 +1,6 @@
 # gow-olympic-edition-olympic-running
-# authors:
+
+# Authors/Members:
 - Thi Thanh Thuy TRINH (@mythy203)
 - Tuan Linh DAO(@linhkobe)
 
