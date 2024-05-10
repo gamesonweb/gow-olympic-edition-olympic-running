@@ -1,2 +1,7 @@
 # gow-olympic-edition-olympic-running
-gow-olympic-edition-olympic-running created by GitHub Classroom
+#authors:
+- Thi Thanh Thuy TRINH (@mythy203)
+- Tuan Linh DAO(@linhkobe)
+
+#Render:
+https://game-babylonjs-cgi.onrender.com/ 
