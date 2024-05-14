@@ -2,7 +2,6 @@ import { Engine, FreeCamera, HemisphericLight, MeshBuilder, Scene, SceneLoader, 
 import { Inspector } from '@babylonjs/inspector';
 import Game from "./game";
 
-
 let engine;
 let canvas;
 let game;
@@ -14,10 +13,11 @@ window.onload = () => {
         engine.resize();
     });
 
-    game = new Game(engine, canvas);
-    game.init();
-    game.start();
-
-
+    if (!game) {
+        game = new Game(engine, canvas);
+        game.init();
+        game.start();
+    }
 }
+
 

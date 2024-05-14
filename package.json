@@ -1,8 +1,7 @@
 {
-  "name": "fromscratch",
+  "name": "olympic-running",
   "version": "1.0.0",
   "description": "BabylonJS game",
-  "main": "index.js",
   "scripts": {
     "start": "npx webpack serve --config webpack.dev.js",
     "start:prod": "webpack serve --config webpack.prod.js",
@@ -14,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pigmin/FromScratch.git"
+    "url": "git+https://github.com/gamesonweb/gow-olympic-edition-olympic-running.git"
   },
-  "author": "OAR",
+  "author": "mythy203&linhkobe",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pigmin/FromScratch/issues"
+    "url": "https://github.com/gamesonweb/gow-olympic-edition-olympic-running/issues"
   },
-  "homepage": "https://github.com/pigmin/FromScratch#readme",
+  "homepage": "https://github.com/gamesonweb/gow-olympic-edition-olympic-running#readme",
   "devDependencies": {
     "@babylonjs/core": "^6.41.0",
     "@babylonjs/gui": "^6.41.0",
