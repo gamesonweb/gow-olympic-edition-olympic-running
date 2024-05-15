@@ -36,7 +36,7 @@ Pour jouer le jeu en local, vous suivez les étapes suivants :
 
 Le jeu a été développé par Tuan Linh Dao et  Thi Thanh Thuy TRINH  dans le cadre du cours "Programing 3D games on the web", enseigné par M. Michel Buffa et aussi le concours Game on Web organisé par CGI France. Nous tenons à exprimer notre gratitude envers les personnes suivantes pour leur soutien et leurs contributions durant le développement de ce jeu :
 
-+ CGI France : Pour avoir organisé le concours Games on Web 2024 qui a fourni l'opportunité de de monter notre compétence et créativité.
++ CGI France : Pour avoir organisé le concours Games on Web 2024 qui a fourni l'opportunité de monter notre compétence et créativité.
 + Michel Buffa : Professeur à l'université Côte d'Azur, pour son enseignement et son encouragement tout au long du cours.
 + Olivier Arguimbau : Professeur à l'université Aix-Marseille, pour ses vidéos explicatives sur la chaîne YouTube qui ont été d'une grande aide.
 + David Catuhe : Créateur de la bibliothèque BabylonJS, pour sa présentation sur Zoom qui a fourni des informations précieuses/inspirations sur BabylonJS.
