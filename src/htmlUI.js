@@ -141,7 +141,7 @@ class HtmlUI {
         this.backButton.textContent = "Quit";
         this.backButton.style.position = "absolute";
         this.backButton.style.top = "10px";
-        this.backButton.style.right = "10px"; // Adjusted to be aligned to the right
+        this.backButton.style.right = "10px"; 
         this.backButton.style.fontSize = "17px";
         this.backButton.style.padding = "10px 20px";
         this.backButton.style.backgroundColor = "gold";
@@ -165,9 +165,9 @@ class HtmlUI {
             heartImg.src = this.game.playerLives > i ? redHeartUrl : whiteHeartUrl;
             heartImg.alt = "heart";
             heartImg.classList.add("heart-icon");
-            heartImg.style.width = "30px";  // Set the width of the heart image
-            heartImg.style.height = "auto"; // Maintain aspect ratio
-            heartImg.style.marginRight = "5px"; // Margin between hearts
+            heartImg.style.width = "30px";  
+            heartImg.style.height = "auto"; 
+            heartImg.style.marginRight = "5px"; 
             this.heartContainer.appendChild(heartImg);
         }
 
@@ -184,6 +184,69 @@ class HtmlUI {
 
     hideHowToPlayPopup() {
         this.howToPlayPopup.style.display = "none";
+    }
+
+    displayRemainingLivesScreen() {
+        const remainingLives = this.game.livesRemaining;
+        this.gameOverScreen.innerHTML = `
+            <div style="
+                position: absolute; 
+                top: 50%; 
+                left: 50%; 
+                transform: translate(-50%, -50%); 
+                text-align: center; 
+                padding: 20px; 
+                background-color: rgba(0, 0, 0, 0.8); 
+                border-radius: 15px; 
+                border: 2px solid #FFD700; 
+                box-shadow: 0px 0px 15px #FFD700;
+            ">
+                <h2 style="color: #FFD700; margin-bottom: 20px;">
+                    You have ${remainingLives} out of 3 lives remaining.
+                </h2>
+                <button id="continueButton" style="
+                    padding: 10px 20px; 
+                    font-size: 24px; 
+                    background-color: #4CAF50; 
+                    color: white; 
+                    border: none; 
+                    border-radius: 10px; 
+                    cursor: pointer; 
+                    margin-right: 10px; 
+                    transition: background-color 0.3s ease;
+                ">
+                    Continue
+                </button>
+                <button id="restartButton" style="
+                    padding: 10px 20px; 
+                    font-size: 24px; 
+                    background-color: #FF0000; 
+                    color: white; 
+                    border: none; 
+                    border-radius: 10px; 
+                    cursor: pointer; 
+                    transition: background-color 0.3s ease;
+                ">
+                    Restart
+                </button>
+            </div>
+        `;
+
+        const continueButton = this.gameOverScreen.querySelector("#continueButton");
+        continueButton.addEventListener("click", () => {
+            this.gameOverScreen.style.display = "none";
+            this.game.gameOver = false;
+            this.game.isMoving = true;
+            this.game.playerLives = remainingLives;
+            this.updateHeartDisplay();
+        });
+
+        const restartButton = this.gameOverScreen.querySelector("#restartButton");
+        restartButton.addEventListener("click", () => {
+            this.game.restartGame();
+        });
+
+        this.gameOverScreen.style.display = "block";
     }
 }
 

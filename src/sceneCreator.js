@@ -1,4 +1,4 @@
-import { BoundingInfo, Color3, Color4, DefaultRenderingPipeline, FreeCamera, HemisphericLight, MeshBuilder, MotionBlurPostProcess, Scalar, SceneLoader, Sound, StandardMaterial, Texture, Vector3 } from "@babylonjs/core";
+import { BoundingInfo, Color3, Color4, DefaultRenderingPipeline, FreeCamera, HemisphericLight, MeshBuilder, MotionBlurPostProcess, ParticleSystem, Scalar, SceneLoader, Sound, StandardMaterial, Texture, Vector3 } from "@babylonjs/core";
 import meshUrl from "../assets/models/playerHurdles.glb";
 import roadTextureUrl from "../assets/textures/track1.jpg";
 import obstacle1Url from "../assets/models/hurdle.glb";
@@ -20,6 +20,7 @@ class SceneCreator {
         this.scene.ambientColor = new Color3(0.8, 0.8, 1);
         this.scene.fogMode = this.scene.FOGMODE_LINEAR;
         this.scene.fogStart = this.game.SPAWN_POS_Z - 30;
+        this.scene.fogEnd = this.game.SPAWN_POS_Z; 
         this.scene.fogColor = new Color3(0.6, 0.6, 0.85);
         this.scene.collisionsEnabled = true;
         this.scene.gravity = new Vector3(0, -0.15, 0);
@@ -44,13 +45,10 @@ class SceneCreator {
     }
 
     async loadModels() {
-        // Kiểm tra xem mô hình nhân vật đã được khởi tạo trước đó hay chưa
         if (this.game.player) {
             console.log("Player model already exists. Skipping creation.");
             return;
         }
-
-        // Load the player model
         let res1 = await SceneLoader.ImportMeshAsync("", "", meshUrl, this.scene);
         this.game.player = res1.meshes[0];
         this.game.player.name = "Player";
@@ -150,34 +148,72 @@ class SceneCreator {
             this.game.tracks.push(newTrack);
         }
         mainTrack.dispose();
-
-        let grassWidth = 20;
+    
+        let grassWidth = 30; 
         let grassHeight = 1000;
-
+    
         let grassLeft = MeshBuilder.CreateGround("grassLeft", { width: grassWidth, height: grassHeight }, this.scene);
         let grassRight = MeshBuilder.CreateGround("grassRight", { width: grassWidth, height: grassHeight }, this.scene);
-
+    
         let grassMaterial = new StandardMaterial("grassMat", this.scene);
         let grassTexture = new Texture(grassTextureUrl, this.scene);
         grassMaterial.diffuseTexture = grassTexture;
-
+    
         grassLeft.material = grassMaterial;
         grassRight.material = grassMaterial;
-
-        grassLeft.position.x = -this.game.TRACK_WIDTH / 2 - 0.5 - (grassWidth - this.game.TRACK_WIDTH) / 2;
-        grassRight.position.x = this.game.TRACK_WIDTH / 2 + 0.5 + (grassWidth - this.game.TRACK_WIDTH) / 2;
+    
+        grassLeft.position.x = -this.game.TRACK_WIDTH; 
+        grassRight.position.x = this.game.TRACK_WIDTH; 
         grassLeft.position.z = grassRight.position.z = 0;
-
+    
         grassMaterial.diffuseTexture.level = 1;
-
+    
         let grassTextureScaleX = 1;
         let grassTextureScaleY = grassHeight / 10;
         grassTexture.uScale = grassTextureScaleX;
         grassTexture.vScale = grassTextureScaleY;
-
+    
         this.game.music = new Sound("music", musicUrl, this.scene, undefined, { loop: true, autoplay: true, volume: 0.4 });
         this.game.aie = new Sound("aie", hitSoundUrl, this.scene);
     }
+    
+    createFireworks() {
+        const particleSystem = new ParticleSystem("particles", 2000, this.scene);
+    
+        particleSystem.particleTexture = new Texture("https://www.babylonjs-playground.com/textures/flare.png", this.scene);
+    
+        particleSystem.emitter = new Vector3(0, 10, 5); 
+        particleSystem.color1 = new Color4(1, 0.5, 0.2, 1.0); 
+        particleSystem.color2 = new Color4(0.2, 1, 0.2, 1.0); 
+        particleSystem.colorDead = new Color4(0.2, 0.2, 1, 0.0); 
+        particleSystem.minSize = 1;
+        particleSystem.maxSize = 2;
+        particleSystem.minLifeTime = 1;
+        particleSystem.maxLifeTime = 3;
+    
+        particleSystem.emitRate = 5000;
+    
+        particleSystem.blendMode = ParticleSystem.BLENDMODE_ONEONE;
+    
+        particleSystem.gravity = new Vector3(0, -9.81, 0);
+    
+        particleSystem.direction1 = new Vector3(-1, 1, 0);
+        particleSystem.direction2 = new Vector3(1, 1, 0);
+    
+        particleSystem.minAngularSpeed = 0;
+        particleSystem.maxAngularSpeed = Math.PI;
+    
+        particleSystem.minEmitPower = 3;
+        particleSystem.maxEmitPower = 5;
+        particleSystem.updateSpeed = 0.01;
+    
+        particleSystem.start();
+    
+        setTimeout(() => {
+            particleSystem.stop();
+        }, 5000);
+    }
+    
 }
 
 export default SceneCreator;

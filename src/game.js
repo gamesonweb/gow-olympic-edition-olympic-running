@@ -15,7 +15,7 @@ class Game {
         this.TRACK_DEPTH = 3;
         this.NB_TRACKS = 50;
         this.NB_OBSTACLES = 10;
-        this.SPAWN_POS_Z = (this.TRACK_DEPTH * this.NB_TRACKS);
+        this.SPAWN_POS_Z = this.TRACK_DEPTH * this.NB_TRACKS;
         this.SPEED_Z = 40;
         this.SPEED_X = 10;
 
@@ -131,18 +131,24 @@ class Game {
     displayWinScreen() {
         this.gameOver = true;
         this.isMoving = false;
-        this.htmlUI.gameOverScreen.innerHTML = `
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                <img src="https://img.freepik.com/vecteurs-libre/personnage-gagnant-gagnant-design-plat_23-2147877481.jpg?t=st=1714590790~exp=1714594390~hmac=b9865df3e46e71c9810adb9daa214fdb0d37567dc590673d132a1c2842401759&w=740" alt="Winner" style="max-width: 90%; max-height: 100%; width: 90%; height: 80%;">
-                <button id="restartButton" style="position: absolute; top: 80%; left: 50%; transform: translateX(-50%); padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: none; border-radius: 10px; cursor: pointer;">Restart</button>
-            </div>
-        `;
-        const restartButton = this.htmlUI.gameOverScreen.querySelector("#restartButton");
-        restartButton.addEventListener("click", () => {
-            this.restartGame();
-        });
-        this.htmlUI.gameOverScreen.style.display = "block";
+    
+        this.sceneCreator.createFireworks();
+    
+        setTimeout(() => {
+            this.htmlUI.gameOverScreen.innerHTML = `
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                    <img src="https://img.freepik.com/vecteurs-libre/illustration-athlete-gagnant-dessine-main_23-2148967018.jpg?t=st=1715778930~exp=1715782530~hmac=83a8f6854486fa366855a7e048e3b6cfd75b2b7929580932a77d45b6fe1da375&w=740" alt="Winner" style="max-width: 90%; max-height: 100%; width: 90%; height: 80%;">
+                    <button id="restartButton" style="position: absolute; top: 80%; left: 50%; transform: translateX(-50%); padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: none; border-radius: 10px; cursor: pointer;">Restart</button>
+                </div>
+            `;
+            const restartButton = this.htmlUI.gameOverScreen.querySelector("#restartButton");
+            restartButton.addEventListener("click", () => {
+                this.restartGame();
+            });
+            this.htmlUI.gameOverScreen.style.display = "block";
+        }, 1000); // 0.5 giây
     }
+    
 
     displayGameOverScreen() {
         this.gameOver = true;
@@ -163,30 +169,7 @@ class Game {
     }
 
     displayRemainingLivesScreen() {
-        const remainingLives = this.livesRemaining;
-        this.htmlUI.gameOverScreen.innerHTML = `
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(226, 245, 39, 0.8); text-align: center;">
-                <h2>You have ${remainingLives} out of 3 lives remaining.</h2>
-                <button id="continueButton" style="padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: none; border-radius: 10px; cursor: pointer; margin-right: 10px;">Continue</button>
-                <button id="restartButton" style="padding: 10px 20px; font-size: 24px; background-color: #FF0000; color: white; border: none; border-radius: 10px; cursor: pointer;">Restart</button>
-            </div>
-        `;
-    
-        const continueButton = this.htmlUI.gameOverScreen.querySelector("#continueButton");
-        continueButton.addEventListener("click", () => {
-            this.htmlUI.gameOverScreen.style.display = "none";
-            this.gameOver = false;
-            this.isMoving = true;
-            this.playerLives = remainingLives;
-            this.htmlUI.updateHeartDisplay();
-        });
-    
-        const restartButton = this.htmlUI.gameOverScreen.querySelector("#restartButton");
-        restartButton.addEventListener("click", () => {
-            this.restartGame();
-        });
-    
-        this.htmlUI.gameOverScreen.style.display = "block";
+        this.htmlUI.displayRemainingLivesScreen();
     }
 
     showStartScreen() {
