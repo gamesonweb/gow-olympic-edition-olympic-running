@@ -6,6 +6,8 @@ class HtmlUI {
         this.game = game;
         this.createHeartContainer();
         this.createScoreDisplay();
+        this.createEiffelDisplay();
+        this.createLevelDisplay();
         this.createGameOverScreen();
         this.createStartScreen();
         this.createHowToPlayPopup();
@@ -32,8 +34,34 @@ class HtmlUI {
         this.scoreDisplay.style.transform = "translateX(-50%)";
         this.scoreDisplay.style.color = "white";
         this.scoreDisplay.style.fontSize = "30px";
-        this.scoreDisplay.textContent = `Score: ${this.game.score}`;
+        this.scoreDisplay.textContent = `Hurdles: ${this.game.score} / ${this.game.targetScore}`;
         document.body.appendChild(this.scoreDisplay);
+    }
+
+    createEiffelDisplay() {
+        this.eiffelDisplay = document.createElement("div");
+        this.eiffelDisplay.id = "eiffelDisplay";
+        this.eiffelDisplay.style.position = "absolute";
+        this.eiffelDisplay.style.top = "50px";
+        this.eiffelDisplay.style.left = "50%";
+        this.eiffelDisplay.style.transform = "translateX(-50%)";
+        this.eiffelDisplay.style.color = "white";
+        this.eiffelDisplay.style.fontSize = "30px";
+        this.eiffelDisplay.textContent = `Eiffel Towers: ${this.game.eiffelCollected} / ${this.game.targetEiffelCount}`;
+        document.body.appendChild(this.eiffelDisplay);
+    }
+
+    createLevelDisplay() {
+        this.levelDisplay = document.createElement("div");
+        this.levelDisplay.id = "levelDisplay";
+        this.levelDisplay.style.position = "absolute";
+        this.levelDisplay.style.top = "90px";
+        this.levelDisplay.style.left = "50%";
+        this.levelDisplay.style.transform = "translateX(-50%)";
+        this.levelDisplay.style.color = "white";
+        this.levelDisplay.style.fontSize = "30px";
+        this.levelDisplay.textContent = `Level: ${this.game.level}`;
+        document.body.appendChild(this.levelDisplay);
     }
 
     createGameOverScreen() {

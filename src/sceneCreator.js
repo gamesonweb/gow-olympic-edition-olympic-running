@@ -71,7 +71,7 @@ class SceneCreator {
         // Load the obstacle model
         let res3 = await SceneLoader.ImportMeshAsync("", "", obstacle1Url, this.scene);
         let obstacleModel = res3.meshes[0];
-        for (let i = 0; i < this.game.NB_OBSTACLES; i++) {
+        for (let i = 0; i < Scalar.RandomRange(2, 10); i++) {
             let obstacle = obstacleModel.clone("");
             obstacle.normalizeToUnitCube();
             let obstacleSize = new Vector3(1, 1, 1);
@@ -119,20 +119,45 @@ class SceneCreator {
 
         // Load the Eiffel Tower model
         let res5 = await SceneLoader.ImportMeshAsync("", "", eiffelUrl, this.scene);
-        let eiffelLogo = res5.meshes[0];
-        eiffelLogo.name = "eiffelLogo";
-        eiffelLogo.position = new Vector3(-7.5, 1, 64.2);
-        eiffelLogo.rotation = new Vector3(Math.PI, 20, Math.PI);
-        eiffelLogo.scaling.scaleInPlace(0.7);
-        if (eiffelLogo.getChildMeshes) {
-            eiffelLogo.getChildMeshes().forEach(childMesh => {
+        let eiffelModel = res5.meshes[0];
+        eiffelModel.name = "eiffelModel";
+        for (let i = 0; i < this.game.targetEiffelCount; i++) {
+            let eiffel = eiffelModel.clone("");
+            eiffel.normalizeToUnitCube();
+            let eiffelSize = new Vector3(0.1, 0.1, 0.1);
+            eiffel.scaling.copyFrom(eiffelSize);
+
+            let x = Scalar.RandomRange(-this.game.TRACK_WIDTH / 2, this.game.TRACK_WIDTH / 2);
+            let z = Scalar.RandomRange(this.game.SPAWN_POS_Z - 15, this.game.SPAWN_POS_Z + 15);
+
+            let y = 0.5; // Adjust height if necessary
+            eiffel.position.set(x, y, z);
+
+            let childMeshes = eiffel.getChildMeshes();
+
+            let min = childMeshes[0].getBoundingInfo().boundingBox.minimumWorld;
+            let max = childMeshes[0].getBoundingInfo().boundingBox.maximumWorld;
+            for (let i = 0; i < childMeshes.length; i++) {
                 let mat = new StandardMaterial("mat", this.scene);
-                mat.emissiveColor = new Color3(0.8, 0.6, 0.1).scale(0.5);
-                childMesh.material = mat;
-            });
-        } else {
-            console.error("Eiffel Tower does not have child meshes.");
+                mat.emissiveColor = new Color4(1, 0.6, 0.2, 1.0);
+                mat.alpha = 0.5;
+
+                childMeshes[i].material = mat;
+                let meshMin = childMeshes[i].getBoundingInfo().boundingBox.minimumWorld;
+                let meshMax = childMeshes[i].getBoundingInfo().boundingBox.maximumWorld;
+
+                min = Vector3.Minimize(min, meshMin);
+                max = Vector3.Maximize(max, meshMax);
+            }
+            eiffel.setBoundingInfo(new BoundingInfo(min, max));
+
+            eiffel.showBoundingBox = false;
+            eiffel.checkCollisions = true;
+            eiffel.collisionGroup = 2;
+
+            this.game.eiffelTowers.push(eiffel);
         }
+        eiffelModel.dispose();
     }
 
     async loadTextures() {
@@ -176,12 +201,12 @@ class SceneCreator {
         this.game.music = new Sound("music", musicUrl, this.scene, undefined, { loop: true, autoplay: true, volume: 0.4 });
         this.game.aie = new Sound("aie", hitSoundUrl, this.scene);
     }
-    
+
     createFireworks() {
         const particleSystem = new ParticleSystem("particles", 2000, this.scene);
-    
+
         particleSystem.particleTexture = new Texture("https://www.babylonjs-playground.com/textures/flare.png", this.scene);
-    
+
         particleSystem.emitter = new Vector3(0, 10, 5); 
         particleSystem.color1 = new Color4(1, 0.5, 0.2, 1.0); 
         particleSystem.color2 = new Color4(0.2, 1, 0.2, 1.0); 
@@ -190,30 +215,30 @@ class SceneCreator {
         particleSystem.maxSize = 2;
         particleSystem.minLifeTime = 1;
         particleSystem.maxLifeTime = 3;
-    
+
         particleSystem.emitRate = 5000;
-    
+
         particleSystem.blendMode = ParticleSystem.BLENDMODE_ONEONE;
-    
+
         particleSystem.gravity = new Vector3(0, -9.81, 0);
-    
+
         particleSystem.direction1 = new Vector3(-1, 1, 0);
         particleSystem.direction2 = new Vector3(1, 1, 0);
-    
+
         particleSystem.minAngularSpeed = 0;
         particleSystem.maxAngularSpeed = Math.PI;
-    
+
         particleSystem.minEmitPower = 3;
         particleSystem.maxEmitPower = 5;
         particleSystem.updateSpeed = 0.01;
-    
+
         particleSystem.start();
-    
+
         setTimeout(() => {
             particleSystem.stop();
         }, 5000);
     }
-    
+
 }
 
 export default SceneCreator;

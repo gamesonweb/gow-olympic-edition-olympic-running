@@ -37,6 +37,9 @@ class Game {
         this.gameStarted = false;
         this.livesRemaining = 3;
         this.playerLives = 3;
+        this.level = 1;
+        this.eiffelCollected = 0;
+        this.targetEiffelCount = 5; // Eiffel Towers needed to pass level 1
 
         this.inputHandler = new InputHandler(this);
         this.htmlUI = new HtmlUI(this);
@@ -59,6 +62,8 @@ class Game {
                 this.gameLogic.update(delta);
             }
             this.updateScoreDisplay();
+            this.updateEiffelDisplay();
+            this.updateLevelDisplay();
             this.scene.render();
         });
     }
@@ -71,6 +76,9 @@ class Game {
         this.running = false;
         this.livesRemaining = 3;
         this.playerLives = 3;
+        this.level = 1;
+        this.eiffelCollected = 0;
+        this.targetEiffelCount = 5;
 
         this.htmlUI.createBackButton();
     }
@@ -84,8 +92,10 @@ class Game {
         this.running = false;
         this.livesRemaining = 3;
         this.playerLives = 3;
+        this.level = 1;
+        this.eiffelCollected = 0;
+        this.targetEiffelCount = 5;
         this.htmlUI.updateHeartDisplay();
-        this.livesRemaining = 3;
         this.player.position.set(0, this.TRACK_HEIGHT / 2, 6);
         this.animationGroups.forEach(group => group.stop());
         this.startIdleAnimation();
@@ -96,6 +106,11 @@ class Game {
             let x = Scalar.RandomRange(-this.TRACK_WIDTH / 2, this.TRACK_WIDTH / 2);
             let z = Scalar.RandomRange(this.SPAWN_POS_Z - 15, this.SPAWN_POS_Z + 15);
             obstacle.position.set(x, 0.5, z);
+        });
+        this.eiffelTowers.forEach((eiffel, index) => {
+            let x = Scalar.RandomRange(-this.TRACK_WIDTH / 2, this.TRACK_WIDTH / 2);
+            let z = Scalar.RandomRange(this.SPAWN_POS_Z - 15, this.SPAWN_POS_Z + 15);
+            eiffel.position.set(x, 0.5, z);
         });
         this.music.play();
     }
@@ -125,30 +140,53 @@ class Game {
     }
 
     updateScoreDisplay() {
-        this.htmlUI.scoreDisplay.textContent = `Score: ${this.score} / ${this.targetScore}`;
+        this.htmlUI.scoreDisplay.textContent = `Hurdles: ${this.score} / ${this.targetScore}`;
+    }
+
+    updateEiffelDisplay() {
+        this.htmlUI.eiffelDisplay.textContent = `Eiffel Towers: ${this.eiffelCollected} / ${this.targetEiffelCount}`;
+    }
+
+    updateLevelDisplay() {
+        this.htmlUI.levelDisplay.textContent = `Level: ${this.level}`;
     }
 
     displayWinScreen() {
         this.gameOver = true;
         this.isMoving = false;
-    
+
         this.sceneCreator.createFireworks();
-    
+
         setTimeout(() => {
             this.htmlUI.gameOverScreen.innerHTML = `
                 <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
                     <img src="https://img.freepik.com/vecteurs-libre/illustration-athlete-gagnant-dessine-main_23-2148967018.jpg?t=st=1715778930~exp=1715782530~hmac=83a8f6854486fa366855a7e048e3b6cfd75b2b7929580932a77d45b6fe1da375&w=740" alt="Winner" style="max-width: 90%; max-height: 100%; width: 90%; height: 80%;">
-                    <button id="restartButton" style="position: absolute; top: 80%; left: 50%; transform: translateX(-50%); padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: none; border-radius: 10px; cursor: pointer;">Restart</button>
+                    <button id="nextLevelButton" style="position: absolute; top: 80%; left: 30%; transform: translateX(-50%); padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: none; border-radius: 10px; cursor: pointer;">Next Level</button>
+                    <button id="restartButton" style="position: absolute; top: 80%; left: 70%; transform: translateX(-50%); padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: none; border-radius: 10px; cursor: pointer;">Restart</button>
                 </div>
             `;
+            const nextLevelButton = this.htmlUI.gameOverScreen.querySelector("#nextLevelButton");
+            nextLevelButton.addEventListener("click", () => {
+                this.nextLevel();
+            });
             const restartButton = this.htmlUI.gameOverScreen.querySelector("#restartButton");
             restartButton.addEventListener("click", () => {
                 this.restartGame();
             });
             this.htmlUI.gameOverScreen.style.display = "block";
-        }, 1000); // 0.5 giây
+        }, 1000); // 1 giây
     }
-    
+
+    nextLevel() {
+        this.htmlUI.gameOverScreen.style.display = "none";
+        this.level++;
+        this.targetEiffelCount *= 2;
+        this.eiffelCollected = 0;
+        this.updateLevelDisplay();
+        this.updateEiffelDisplay();
+        this.gameOver = false;
+        this.isMoving = true;
+    }
 
     displayGameOverScreen() {
         this.gameOver = true;
@@ -159,12 +197,12 @@ class Game {
                 <button id="restartButton" style="position: absolute; top: 80%; left: 50%; transform: translateX(-50%); padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: none; border-radius: 10px; cursor: pointer;">Restart</button>
             </div>
         `;
-    
+
         const restartButton = this.htmlUI.gameOverScreen.querySelector("#restartButton");
         restartButton.addEventListener("click", () => {
             this.restartGame();
         });
-    
+
         this.htmlUI.gameOverScreen.style.display = "block";
     }
 
