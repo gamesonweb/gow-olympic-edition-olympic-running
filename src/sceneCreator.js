@@ -236,7 +236,7 @@ class SceneCreator {
 
         setTimeout(() => {
             particleSystem.stop();
-        }, 5000);
+        }, 2000);
     }
 
 }

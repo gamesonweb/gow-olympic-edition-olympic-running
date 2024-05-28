@@ -61,7 +61,7 @@ class Game {
                 this.gameLogic.updateMoves(delta);
                 this.gameLogic.update(delta);
             }
-            this.updateScoreDisplay();
+            // this.updateScoreDisplay();
             this.updateEiffelDisplay();
             this.updateLevelDisplay();
             this.scene.render();
@@ -140,7 +140,7 @@ class Game {
     }
 
     updateScoreDisplay() {
-        this.htmlUI.scoreDisplay.textContent = `Hurdles: ${this.score} / ${this.targetScore}`;
+        // this.htmlUI.scoreDisplay.textContent = `Hurdles: ${this.score} / ${this.targetScore}`;
     }
 
     updateEiffelDisplay() {
@@ -174,7 +174,7 @@ class Game {
                 this.restartGame();
             });
             this.htmlUI.gameOverScreen.style.display = "block";
-        }, 1000); // 1 giây
+        }, 1000);
     }
 
     nextLevel() {

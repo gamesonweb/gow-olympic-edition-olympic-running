@@ -30,11 +30,11 @@ class GameLogic {
             }
         }
 
-        if (this.game.score >= this.game.targetScore && this.game.livesRemaining > 0) {
-            this.game.displayWinScreen();
-            this.game.gameOver = true;  
-            return;  
-        }
+        // if (this.game.score >= this.game.targetScore && this.game.livesRemaining > 0) {
+        //     this.game.displayWinScreen();
+        //     this.game.gameOver = true;  
+        //     return;  
+        //}
     }
 
     updateJumping(delta) {
