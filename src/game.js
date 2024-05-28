@@ -154,13 +154,16 @@ class Game {
     displayWinScreen() {
         this.gameOver = true;
         this.isMoving = false;
+        this.startIdleAnimation();
+        this.gameStarted= false;
+
 
         this.sceneCreator.createFireworks();
 
         setTimeout(() => {
             this.htmlUI.gameOverScreen.innerHTML = `
                 <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                    <img src="https://img.freepik.com/vecteurs-libre/illustration-athlete-gagnant-dessine-main_23-2148967018.jpg?t=st=1715778930~exp=1715782530~hmac=83a8f6854486fa366855a7e048e3b6cfd75b2b7929580932a77d45b6fe1da375&w=740" alt="Winner" style="max-width: 90%; max-height: 100%; width: 90%; height: 80%;">
+                    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnQ4bzlrbm15eGIxbnRxbDRrMXdvaXlndmx3c2pqbnB4M2FnbTkxeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Fk0uiELXTf9NK9fieh/giphy.gif" alt="Winner" style="max-width: 90%; max-height: 100%; width: 90%; height: 80%;">
                     <button id="nextLevelButton" style="position: absolute; top: 80%; left: 30%; transform: translateX(-50%); padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: none; border-radius: 10px; cursor: pointer;">Next Level</button>
                     <button id="restartButton" style="position: absolute; top: 80%; left: 70%; transform: translateX(-50%); padding: 10px 20px; font-size: 24px; background-color: #4CAF50; color: white; border: none; border-radius: 10px; cursor: pointer;">Restart</button>
                 </div>
@@ -185,7 +188,8 @@ class Game {
         this.updateLevelDisplay();
         this.updateEiffelDisplay();
         this.gameOver = false;
-        this.isMoving = true;
+        this.isMoving = false;
+
     }
 
     displayGameOverScreen() {
@@ -225,6 +229,8 @@ class Game {
         this.livesRemaining--;
         this.playerLives = this.livesRemaining > 0 ? this.livesRemaining : 0;
         
+        this.startIdleAnimation();
+
         if (this.livesRemaining <= 0) {
             this.displayGameOverScreen();
         } else {

@@ -268,7 +268,8 @@ class HtmlUI {
         continueButton.addEventListener("click", () => {
             this.gameOverScreen.style.display = "none";
             this.game.gameOver = false;
-            this.game.isMoving = true;
+            this.game.isMoving = false;
+            this.game.gameStarted = false;
             this.game.playerLives = remainingLives;
             this.updateHeartDisplay();
         });
