@@ -10,6 +10,7 @@ class HtmlUI {
         this.createGameOverScreen();
         this.createStartScreen();
         this.createHowToPlayPopup();
+        this.createKeyPressedDisplay();
     }
 
     createHeartContainer() {
@@ -280,6 +281,42 @@ class HtmlUI {
         });
 
         this.gameOverScreen.style.display = "block";
+    }
+    createKeyPressedDisplay() {
+        this.keyPressedDisplay = document.createElement("div");
+        this.keyPressedDisplay.id = "keyPressedDisplay";
+        this.keyPressedDisplay.style.position = "absolute";
+        this.keyPressedDisplay.style.bottom = "1vw";
+        this.keyPressedDisplay.style.right = "1vw"; 
+        this.keyPressedDisplay.style.color = "white";
+        this.keyPressedDisplay.style.fontSize = "2vw";
+        this.keyPressedDisplay.style.padding = "0.5vw";
+        this.keyPressedDisplay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+        this.keyPressedDisplay.style.borderRadius = "0.5vw";
+        this.keyPressedDisplay.style.display = "none"; 
+        document.body.appendChild(this.keyPressedDisplay);
+    }
+
+    updateKeyPressedDisplay(keyCode) {
+        const keyIcon = this.getKeyIcon(keyCode);
+        this.keyPressedDisplay.innerHTML = `Key Pressed: ${keyIcon}`;
+        this.keyPressedDisplay.style.display = "block";
+        setTimeout(() => {
+            this.keyPressedDisplay.style.display = "none";
+        }, 1000); 
+    }
+
+    getKeyIcon(keyCode) {
+        const keyIcons = {
+            "Enter": "Enter ⏎",  
+            "Space": "Space ⎵",   
+            "ArrowUp": "↑", 
+            "ArrowDown": "↓", 
+            "ArrowLeft": "ArrowLeft ←", 
+            "ArrowRight": "ArrowRight →", 
+           
+        };
+        return keyIcons[keyCode] || keyCode; 
     }
 }
 

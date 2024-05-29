@@ -8,6 +8,7 @@ class InputHandler {
 
     handleKeyDown(event) {
         this.inputMap[event.code] = true;
+        this.game.htmlUI.updateKeyPressedDisplay(event.code); 
         if (event.code === "Enter" && !this.game.gameStarted) {
             this.game.gameStarted = true;
             this.game.isMoving = true;
