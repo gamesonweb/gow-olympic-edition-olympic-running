@@ -6,17 +6,17 @@ Découvrez le jeu en ligne : https://game-babylonjs-cgi.onrender.com/
 
 # Concept du Jeu
 
-Se déroulant lors des Jeux Olympiques de cette année, les joueurs sont plongés dans une aventure où ils doivent contrôler un athlète à travers une série d'obstacles. Face à des monuments parisiens emblématiques, dont la Tour Eiffel, les joueurs doivent utiliser des réflexes rapides pour sauter par-dessus les obstacles et atteindre le score cible. Le jeu est conçu pour défier les joueurs avec des niveaux de difficulté croissants, nécessitant à la fois des compétences et de l'endurance pour réussir.
+Se déroulant lors des Jeux Olympiques de cette année, les joueurs sont plongés dans une aventure où ils doivent contrôler un athlète à travers une série d'obstacles. Face à des monuments parisiens emblématiques, dont la Tour Eiffel, les joueurs doivent utiliser des réflexes rapides pour sauter par-dessus les obstacles et atteindre le nombre de tour d'Eiffel cible. Le jeu est conçu pour défier les joueurs avec des niveaux de difficulté croissants, nécessitant à la fois des compétences et de l'endurance pour réussir.
 
 # À propos du jeu 
 
-L'objectif est d'éviter les obstacles jaunes et de continuer à courir jusqu'à atteindre le score cible. Les joueurs ont trois vies, représentées par des cœurs, pour relever le défi. Le jeu se termine si le joueur perd ses trois vies.
+L'objectif est d'éviter les obstacles jaunes sur la route et de courir et collecter à la fois le nombre de tour d'Eiffel cible à chaque niveau du jeu. Les joueurs ont trois vies, représentées par des cœurs, pour relever le défi. Le jeu se termine si le joueur perd ses trois vies.
 
 Caractéristiques Clés: 
 + Graphismes Immersifs : Visuels époustouflants de Paris avec des thèmes olympiques.
 + Obstacles Défiants : Difficulté croissante avec plus d'obstacles.
 + Contrôles Réactifs : Contrôles fluides et intuitifs pour une expérience sans accroc.
-+ Affichage Dynamique du Score : Suivez votre progression avec le score affiché en haut de l'écran.
++ Affichage Dynamique du nombre de tour d'Eiffel actuel : Suivez votre progression avec le nombre de tour d'Eiffel affiché en haut de l'écran.
 
 # Comment Jouer
 ## Jouer en Ligne
