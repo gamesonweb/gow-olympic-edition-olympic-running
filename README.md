@@ -5,7 +5,7 @@ Bienvenue dans le jeu de course des Jeux Olympiques de Paris 2024, un jeu web dy
 Découvrez le jeu en ligne : https://game-babylonjs-cgi.onrender.com/
 
 # Video Démo
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rH7A1K9UxMc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Regardez cette video: https://www.youtube.com/embed/rH7A1K9UxMc
 
 # Concept du Jeu
 
