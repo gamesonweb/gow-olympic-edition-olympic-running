@@ -4,6 +4,9 @@ Bienvenue dans le jeu de course des Jeux Olympiques de Paris 2024, un jeu web dy
 # Lien du Jeu
 Découvrez le jeu en ligne : https://game-babylonjs-cgi.onrender.com/
 
+# Video Démo
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rH7A1K9UxMc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 # Concept du Jeu
 
 Se déroulant lors des Jeux Olympiques de cette année, les joueurs sont plongés dans une aventure où ils doivent contrôler un athlète à travers une série d'obstacles. Face à des monuments parisiens emblématiques, dont la Tour Eiffel, les joueurs doivent utiliser des réflexes rapides pour sauter par-dessus les obstacles et atteindre le nombre de Tour Eiffel cible. Le jeu est conçu pour défier les joueurs avec des niveaux de difficulté croissants, nécessitant à la fois des compétences et de l'endurance pour réussir.
