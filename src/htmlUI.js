@@ -146,13 +146,13 @@ class HtmlUI {
         this.howToPlayPopup.innerHTML = `
             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.9); text-align: center;">
                 <h2>How to play</h2>
-                <p style="font-size: 1vw; color: maroon">Welcome to the Olympic Games 2024 Paris on the web!</p>
-                <p style="font-size: 1vw; color: maroon">Here is the instruction on how to play this running game using your keyboard:</p>
-                <p style="font-size: 1vw; color: maroon">1. The goal of this game is to keep the player avoiding the hurdle in yellow on the way until it reaches the target score.</p>
-                <p style="font-size: 1vw; color: maroon">2. To make the player run, you can press the "Enter" button.</p>
-                <p style="font-size: 1vw; color: maroon">3. To make the player jump, you can press the "Space" button.</p>
-                <p style="font-size: 1vw; color: maroon">4. You can move the player to the left/right by pressing the left/right arrow buttons.</p>
-                <p style="font-size: 1vw; color: maroon">5. You will have three chances to win this game every time you play it, each chance will be displayed by a red heart (each time you lose the game temporarily, a heart will disappear).</p>
+                <p style="font-size: 1.5vw; color: maroon">Welcome to the Olympic Games 2024 Paris on the web!</p>
+                <p style="font-size: 1.5vw; color: maroon">Here is the instruction on how to play this running game using your keyboard:</p>
+                <p style="font-size: 1.5vw; color: maroon">1. The goal of this game is to keep the player avoiding the yellow hurdle on the way and collect Eiffel Tower until <br> it reaches the target number of Eiffel Tower then you can move to next level.</p>
+                <p style="font-size: 1.5vw; color: maroon">2. To make the player run, you can press the "Enter" button.</p>
+                <p style="font-size: 1.5vw; color: maroon">3. To make the player jump, you can press the "Space" button.</p>
+                <p style="font-size: 1.5vw; color: maroon">4. You can move the player to the left/right by pressing the left/right arrow buttons.</p>
+                <p style="font-size: 1.5vw; color: maroon">5. You will have three chances to win this game every time you play it, each chance will be displayed by a red heart <br> (each time you lose the game temporarily, a heart will disappear).</p>
                 <button id="closePopupButton" style="padding: 1vw 2vw; font-size: 2vw; margin: 1vw; cursor: pointer; background-color:gold; color: white; border: none; border-radius: 5px; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='crimson'" onmouseout="this.style.backgroundColor='gold'">Understood</button>
             </div>
         `;
