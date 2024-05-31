@@ -21,10 +21,10 @@ Caractéristiques Clés:
 
 # Comment Jouer
 ## Jouer en Ligne
-Visitez le site web du jeu.
-Cliquez sur le bouton "Start" sur l'écran initial pour commencer le jeu.
-Cliquez sur le bouton "How to play" pour les intructions du jeu.
-Utilisez la clavier pour naviguer l'athlète, éviter les obstacles et collecter les tours Eiffel en même temps.
++ Visitez le site web du jeu.
++ Cliquez sur le bouton "Start" sur l'écran initial pour commencer le jeu.
++ Cliquez sur le bouton "How to play" pour les intructions du jeu.
++ Utilisez la clavier pour naviguer l'athlète, éviter les obstacles et collecter les tours Eiffel en même temps.
 
 ## Jouer en Local
 Pour jouer le jeu en local, vous suivez les étapes suivants : 
