@@ -28,10 +28,22 @@ Caractéristiques Clés:
 
 ## Jouer en Local
 Pour jouer le jeu en local, vous suivez les étapes suivants : 
-1) Clonez le projet avec la commande dans le terminal: git clone https://github.com/your-repo/olympic-running-game.git
-2) Accédez au répertoire du projet : cd "GOW-OLYMPIC-EDITION-OLYMPIC-RUNNING"
-3) Installez les dépendances : npm install.
-4) Démarrez le serveur du jeu : npm start.
+1) Clonez le projet avec la commande dans le terminal: 
+```ruby
+git clone https://github.com/gamesonweb/gow-olympic-edition-olympic-running.git
+```
+2) Accédez au répertoire du projet : 
+```ruby
+cd "GOW-OLYMPIC-EDITION-OLYMPIC-RUNNING"
+```
+3) Installez les dépendances : 
+```ruby
+npm install
+```
+4) Démarrez le serveur du jeu : 
+```ruby
+npm start
+```
 5) Ouvrez votre navigateur web et allez sur http://localhost:8080 pour jouer au jeu.
 
 # Crédits
